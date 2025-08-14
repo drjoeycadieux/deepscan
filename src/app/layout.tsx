@@ -22,6 +22,11 @@ export default function RootLayout({
       <body className="font-body antialiased">
         {children}
         <Toaster />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1905337734598020"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
