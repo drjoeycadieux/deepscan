@@ -3,7 +3,7 @@ import { analyzeCode } from '@/lib/analysis';
 import { CodeForm } from '@/components/deep-scan/code-form';
 import { ResultsDisplay } from '@/components/deep-scan/results-display';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
+import { LoaderCircle } from 'lucide-react';
 
 export default async function Home({ searchParams }: { searchParams: { code?: string; language?: string } }) {
   const code = searchParams.code;
@@ -54,21 +54,9 @@ async function AnalysisComponent({ code, language }: { code: string; language: s
 
 function ResultsSkeleton() {
     return (
-        <div className="space-y-8 animate-pulse">
-            <Card>
-                <CardHeader>
-                    <Skeleton className="h-8 w-1/3 rounded-md" />
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <Skeleton className="h-4 w-full rounded-md" />
-                    <Skeleton className="h-4 w-full rounded-md" />
-                    <Skeleton className="h-4 w-3/4 rounded-md" />
-                </CardContent>
-            </Card>
-            <div className="space-y-4">
-              <Skeleton className="h-10 w-full rounded-md" />
-              <Skeleton className="h-64 w-full rounded-md" />
-            </div>
+        <div className="flex flex-col items-center justify-center gap-4 p-8 rounded-lg bg-card/50">
+            <LoaderCircle className="h-12 w-12 animate-spin text-primary" />
+            <p className="text-lg font-medium text-muted-foreground">Checking...</p>
         </div>
     );
 }

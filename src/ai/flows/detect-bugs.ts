@@ -36,7 +36,7 @@ const prompt = ai.definePrompt({
   name: 'detectBugsPrompt',
   input: {schema: DetectBugsInputSchema},
   output: {schema: DetectBugsOutputSchema},
-  prompt: `You are an AI code analyzer that detects bugs in the given code.\\n\\nAnalyze the following code for potential bugs and security vulnerabilities. Provide a detailed description of each bug, its location in the code, its severity (High, Medium, Low), and a suggestion on how to fix it.\\n\\nCode:\\n\`\`\`\\n{{{code}}}\\n\`\`\`\\n\\nOutput the bugs in JSON format.  Each bug should have a description, location, severity, and suggestion.`,
+  prompt: `You are an AI code analyzer that detects bugs in the given code.\\n\\nAnalyze the following code for potential bugs and security vulnerabilities. Provide a detailed description of each bug, its location in the code, its severity (High, Medium, Low), and a suggestion on how to fix it.\\n\\nCode:\\n\`\`\`\\n{{{code}}}\\n\`\`\`\\n\\nOutput the bugs in JSON format. Each bug should have a description, location, severity, and suggestion.`,
 });
 
 const detectBugsFlow = ai.defineFlow(
