@@ -5,33 +5,53 @@ import { ResultsDisplay } from '@/components/deep-scan/results-display';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LoaderCircle } from 'lucide-react';
 
+function Footer() {
+  return (
+    <footer className="mt-16 border-t border-border/50 py-8">
+      <div className="container mx-auto text-center text-muted-foreground text-sm">
+        <p>&copy; {new Date().getFullYear()} Deep Scan. All rights reserved.</p>
+        <p className="mt-2">
+          Powered by{' '}
+          <a href="https://firebase.google.com/products/studio" target="_blank" rel="noopener noreferrer" className="text-primary/80 hover:underline">
+            Firebase Studio
+          </a>
+        </p>
+      </div>
+    </footer>
+  );
+}
+
+
 export default async function Home({ searchParams }: { searchParams: { code?: string; language?: string } }) {
   const code = searchParams.code;
   const language = searchParams.language || 'javascript';
 
   return (
-    <main className="container mx-auto px-4 py-8 md:py-12">
-      <header className="text-center mb-10">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary font-headline">
-          Deep Scan
-        </h1>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Your AI-powered partner for writing clean, secure, and optimized code. Paste your snippet, choose the language, and let our advanced analysis begin.
-        </p>
-      </header>
-      
-      <section className="max-w-4xl mx-auto">
-        <CodeForm code={code} language={language} />
-      </section>
-      
-      {code && (
-        <section className="mt-12 max-w-6xl mx-auto">
-          <Suspense fallback={<ResultsSkeleton />}>
-            <AnalysisComponent code={code} language={language} />
-          </Suspense>
+    <>
+      <main className="container mx-auto px-4 py-8 md:py-12">
+        <header className="text-center mb-10">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary font-headline">
+            Deep Scan
+          </h1>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            Your AI-powered partner for writing clean, secure, and optimized code. Paste your snippet, choose the language, and let our advanced analysis begin.
+          </p>
+        </header>
+
+        <section className="max-w-4xl mx-auto">
+          <CodeForm code={code} language={language} />
         </section>
-      )}
-    </main>
+
+        {code && (
+          <section className="mt-12 max-w-6xl mx-auto">
+            <Suspense fallback={<ResultsSkeleton />}>
+              <AnalysisComponent code={code} language={language} />
+            </Suspense>
+          </section>
+        )}
+      </main>
+      <Footer />
+    </>
   );
 }
 
