@@ -3,11 +3,53 @@ import { analyzeCode } from '@/lib/analysis';
 import { CodeForm } from '@/components/deep-scan/code-form';
 import { ResultsDisplay } from '@/components/deep-scan/results-display';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LoaderCircle } from 'lucide-react';
+import { LoaderCircle, Eye, ShieldCheck, Zap } from 'lucide-react';
+
+function AboutSection() {
+  const features = [
+    {
+      icon: <Eye className="h-8 w-8 text-primary" />,
+      title: 'Comprehensive Bug Detection',
+      description: 'Our AI meticulously scans your code to identify a wide range of bugs, from simple syntax errors to complex logic flaws, helping you improve code quality and reliability.',
+    },
+    {
+      icon: <ShieldCheck className="h-8 w-8 text-primary" />,
+      title: 'Advanced Security Scanning',
+      description: 'We check for common security vulnerabilities like SQL injection, XSS, and more, providing actionable recommendations to keep your application secure.',
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-primary" />,
+      title: 'Performance Optimization',
+      description: 'Receive intelligent suggestions to refactor your code for better performance and readability, ensuring your application runs efficiently.',
+    },
+  ];
+
+  return (
+    <section className="py-16 bg-background">
+      <div className="container mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight text-primary font-headline">Why Deep Scan?</h2>
+          <p className="mt-4 text-lg text-muted-foreground max-w-3xl mx-auto">
+            Deep Scan leverages the power of generative AI to provide developers with a comprehensive and intuitive code analysis experience. Our tool goes beyond traditional static analysis to offer deeper insights and actionable feedback.
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8 text-center">
+          {features.map((feature, index) => (
+            <div key={index} className="p-6 rounded-lg">
+              <div className="flex justify-center items-center mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 
 function Footer() {
   return (
-    <footer className="mt-16 border-t border-border/50 py-8">
+    <footer className="border-t border-border/50 py-8">
       <div className="container mx-auto text-center text-muted-foreground text-sm">
         <p>&copy; {new Date().getFullYear()} Deep Scan. All rights reserved.</p>
         <p className="mt-2">
@@ -50,6 +92,7 @@ export default async function Home({ searchParams }: { searchParams: { code?: st
           </section>
         )}
       </main>
+      <AboutSection />
       <Footer />
     </>
   );
